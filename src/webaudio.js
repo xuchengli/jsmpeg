@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var WebAudioOut = function(options) {
 	this.context = WebAudioOut.CachedContext =
 		WebAudioOut.CachedContext ||

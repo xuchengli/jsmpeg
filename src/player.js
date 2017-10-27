@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var Player = function(url, options) {
 	this.options = options || {};
 

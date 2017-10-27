@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var CanvasRenderer = function(options) {
 	this.canvas = options.canvas || document.createElement('canvas');
 	this.width = this.canvas.width;

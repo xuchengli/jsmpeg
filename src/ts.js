@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var TS = function(options) {
 	this.bits = null;
 	this.leftoverBytes = null;

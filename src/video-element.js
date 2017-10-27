@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var VideoElement = function(element) {
 	var url = element.dataset.url;
 

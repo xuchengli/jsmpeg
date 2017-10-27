@@ -1,3 +1,5 @@
+const JSMpeg = require("./jsmpeg");
+
 var AjaxProgressiveSource = function(url, options) {
 	this.url = url;
 	this.destination = null;
