@@ -15,7 +15,7 @@ var JSMpeg = {
 	// the video and handles Audio unlocking on iOS. VideoElements can be
 	// created directly in HTML using the <div class="jsmpeg"/> tag.
 	VideoElement: null,
-	
+
 	// The BitBuffer wraps a Uint8Array and allows reading an arbitrary number
 	// of bits at a time. On writing, the BitBuffer either expands its
 	// internal buffer (for static files) or deletes old data (for streaming).
@@ -30,7 +30,7 @@ var JSMpeg = {
 	//   .established - boolean, true after connection is established
 	//   .completed - boolean, true if the source is completely loaded
 	//   .progress - float 0-1
-	Source: {}, 
+	Source: {},
 
 	// A Demuxer may sit between a Source and a Decoder. It separates the
 	// incoming raw data into Video, Audio and other Streams. API:
@@ -68,12 +68,10 @@ var JSMpeg = {
 	//   .stop()
 	//   .enqueuedTime - float, in seconds
 	//   .enabled - wether the output does anything upon receiving data
-	AudioOutput: {}, 
+	AudioOutput: {},
 
 	Now: function() {
-		return window.performance 
-			? window.performance.now() / 1000
-			: Date.now() / 1000;
+		return window.performance ? window.performance.now() / 1000 : Date.now() / 1000;
 	},
 
 	CreateVideoElements: function() {
@@ -94,12 +92,12 @@ var JSMpeg = {
 		}
 	}
 };
+module.exports = JSMpeg;
 
 // Automatically create players for all found <div class="jsmpeg"/> elements.
-if (document.readyState === 'complete') {
-	JSMpeg.CreateVideoElements();
-}
-else {
-	document.addEventListener('DOMContentLoaded', JSMpeg.CreateVideoElements);
-}
-
+// if (document.readyState === 'complete') {
+// 	JSMpeg.CreateVideoElements();
+// }
+// else {
+// 	document.addEventListener('DOMContentLoaded', JSMpeg.CreateVideoElements);
+// }

@@ -1,9 +1,7 @@
-JSMpeg.Source.WebSocket = (function(){ "use strict";
-
 var WSSource = function(url, options) {
 	this.url = url;
 	this.options = options;
-	this.socket = null;	
+	this.socket = null;
 
 	this.callbacks = {connect: [], data: []};
 	this.destination = null;
@@ -34,7 +32,7 @@ WSSource.prototype.start = function() {
 	this.shouldAttemptReconnect = !!this.reconnectInterval;
 	this.progress = 0;
 	this.established = false;
-	
+
 	this.socket = new WebSocket(this.url, this.options.protocols || null);
 	this.socket.binaryType = 'arraybuffer';
 	this.socket.onmessage = this.onMessage.bind(this);
@@ -56,7 +54,7 @@ WSSource.prototype.onClose = function() {
 	if (this.shouldAttemptReconnect) {
 		clearTimeout(this.reconnectTimeoutId);
 		this.reconnectTimeoutId = setTimeout(function(){
-			this.start();	
+			this.start();
 		}.bind(this), this.reconnectInterval*1000);
 	}
 };
@@ -67,7 +65,4 @@ WSSource.prototype.onMessage = function(ev) {
 	}
 };
 
-return WSSource;
-
-})();
-
+module.exports = WSSource;

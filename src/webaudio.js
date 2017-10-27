@@ -1,5 +1,3 @@
-JSMpeg.AudioOutput.WebAudio = (function() { "use strict";
-
 var WebAudioOut = function(options) {
 	this.context = WebAudioOut.CachedContext =
 		WebAudioOut.CachedContext ||
@@ -12,7 +10,7 @@ var WebAudioOut = function(options) {
 	// can safely close() it when we're the only one connected to it.
 	this.gain.connect(this.context.destination);
 	this.context._connections = (this.context._connections || 0) + 1;
-	
+
 	this.startTime = 0;
 	this.buffer = null;
 	this.wallclockStartTime = 0;
@@ -20,7 +18,7 @@ var WebAudioOut = function(options) {
 	this.enabled = true;
 
 	this.unlocked = !WebAudioOut.NeedsUnlocking();
-	
+
 	Object.defineProperty(this, 'enqueuedTime', {get: this.getEnqueuedTime});
 };
 
@@ -101,7 +99,7 @@ WebAudioOut.prototype.unlock = function(callback) {
 	}
 
 	this.unlockCallback = callback;
-	
+
 	// Create empty buffer and play it
 	var buffer = this.context.createBuffer(1, 1, 22050);
 	var source = this.context.createBufferSource();
@@ -114,13 +112,13 @@ WebAudioOut.prototype.unlock = function(callback) {
 
 WebAudioOut.prototype.checkIfUnlocked = function(source, attempt) {
 	if (
-		source.playbackState === source.PLAYING_STATE || 
+		source.playbackState === source.PLAYING_STATE ||
 		source.playbackState === source.FINISHED_STATE
 	) {
 		this.unlocked = true;
 		if (this.unlockCallback) {
 			this.unlockCallback();
-			this.unlockCallback = null;	
+			this.unlockCallback = null;
 		}
 	}
 	else if (attempt < 10) {
@@ -139,7 +137,4 @@ WebAudioOut.IsSupported = function() {
 
 WebAudioOut.CachedContext = null;
 
-return WebAudioOut;
-
-})();
-
+module.exports = WebAudioOut;
